@@ -1,0 +1,103 @@
+---------BALAN GIORGIANA-LAVINIA-----------
+----------------321CB----------------------
+--------------TEMA1 PA----------------------
+
+
+
+        PROBLEMA 1:
+
+    Pentru aceasta problema am aplicat un algoritm de tip greedy.
+   
+    Pentru calcularea diferentei maxime pentru Tuzgu, am sortat descrescator 
+vectorul initial pentru ca Tuzgu sa aleaga mereu elementele mai mari. 
+   
+    Urmatorul pas dupa sortare, am parcurs elementele vectorului doua cate doua, 
+pe primul adaugandu-l in suma lui Tuzgu iar pe celalalt in cea a Ritzei.
+   
+    Daca vectorul are numar impar de elemente, pe ultimul il adaug in suma 
+lui Tuzgu. La final returnez diferenta dintre cele doua sume.    
+    
+    COMPLEXITATEA temporala a algoritmului acestei solutii este O(n * log(n)) + O(n), 
+adica O(n * log(n)), unde O(n * log(n)) este complexitatea sortarii, iar O(n) este 
+complexitatea for-ului in care calculez sumele.
+    COMPLEXITATEA spatiala este O(1), constanta.
+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+
+        PROBLEMA 2:
+
+    Solutia gasita pentru aceasta problema este un algoritm de tip dynamic 
+programming.    
+    
+    Asemenea primei probleme, primul pas este sortarea descrescatoare a 
+vectorului. In rezolvarea problemei, ma folosesc mereu de doi vectori, pe care 
+ii modific la fiecare pas dupa cum am nevoie.
+   
+    Primul vector il voi initializa cu diferenta maxima pentru Tuzgu inainte 
+de vreo eliminare, la fiecare pas, adica pentru fiecare subvector de 1, 2,...n
+elemente. Apoi, pentru fiecare eliminare ce trebuie facuta completez un nou 
+vector cu diferente maxime, tinand cont de momentul la care se face eliminarea.
+Acesta reprezinta cazul de baza al recurentei gasite.
+    
+    Astfel, exista doua cazuri pentru eliminarea curenta: 
+        1) eliminarea curenta inca nu s-a facut pana la acest pas si va fi 
+eliminat exact elementul curent, ceea ce inseamna ca valoarea diferentei maxime 
+in acest moment este exact valoarea de la pasul precedent al eliminarii 
+precedente;
+        2) eliminarea curenta a fost facuta, adica a fost deja eliminat alt 
+element, iar pe cel curent trebuie sa il adaug sau sa il scad din diferenta 
+de la pasul anterior in functie de randul cui este la extragere (al lui Tuzgu 
+sau al Ritzei);
+    Voi completa elementul din vector cu maximul acestor diferente.
+    
+    Astfel, pentru fiecare eliminare ce trebuie facuta, nu am nevoie decat de 
+vectorul de diferente maxime corespunzator eliminarii anterioare.  
+
+    Diferenta maxima ce se poate obtine dupa cele k eliminari din vectorul 
+initial va fi exact ultimul element din vectorul corespunzator ultimei eliminari.
+
+    COMPLEXITATEA temporala a solutiei gasite pentru aceasta problema este: 
+O(n) + O( n*k - k ^ 2 ).
+    COMPLEXITATEA spatiala este O(n * k).
+
+
+
+-------------------------------------------------------------------------------
+
+
+
+        PROBLEMA 3:
+
+    Solutia gasita pentru aceasta problema este tot de tipul unui algoritm de 
+programare dinamica. 
+
+    Ca prim pas, am creat o matrice de dimensune n * n, iar pe diagonala principala
+a acesteia pun elementele sirului, reprezentand diferentele maxime pentru 
+subvectori de lungime 1 din vectorul initial. Fiind un singur element, acesta 
+este extras de Tuzgu si reprezinta diferenta maxima. Acesta reprezinta cazul 
+de baza.
+
+    Urmatoarele diagonale de sub cea principala reprezinta diferentele maxime 
+pentru subvectorii de lungimi 2, 3,..., n. Astfel, elementul din stanga jos 
+reprezinta diferenta maxima obtinuta exact pentru vectorul de n elemente.
+
+    Astfel, completez jumatatea de jos a matricei pe diagonale, dupa 
+urmatoarea regula: diferenta maxima intre doi indecsi i si j (reprezentati 
+de indicii pentru coloana , respectiv linie) este maximul dintre diferenta 
+maxima obtinuta in cazul in care se alege primul element si diferenta maxima 
+pentru cazul in care se alege ultimul element.
+
+    COMPLEXITATEA temporala a acestei solutii este O(n) + O(n ^ 2), adica O(n ^ 2)
+in worst case, unde O(n) este complexitatea conditiei de baza, iar O(n ^ 2) este 
+complexitatea pentru completarea celor n-1 diagonale.
+    COMPLEXITATEA spatiala este O(n ^ 2) , pentru matricea de diferente.
+
+
+    
+---------------------------------------------------------------------------------
